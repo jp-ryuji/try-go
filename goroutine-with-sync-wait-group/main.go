@@ -15,15 +15,15 @@ func main() {
 	loopNum := 3
 	fooSleepTime := 2
 
-	var wg sync.WaitGroup
+	var wg sync.WaitGroup // WaitGroup を作成
 	errorsCh := make(chan error, loopNum)
 
 	fmt.Printf("foo is looping %d times\n", loopNum)
 
 	for i := 0; i < loopNum; i++ {
-		wg.Add(1)
-		go func(sleepTime int) {
-			defer wg.Done()
+		wg.Add(1)                // goroutine 開始時に wg.Add(1) を呼び出す
+		go func(sleepTime int) { // goroutine を起動
+			defer wg.Done() // goroutine 終了時に wg.Done() を呼び出す
 
 			err := foo(sleepTime)
 			if err != nil {
@@ -32,7 +32,7 @@ func main() {
 		}(fooSleepTime)
 	}
 
-	wg.Wait()
+	wg.Wait() // 全ての goroutine が終了するまで待つ
 	close(errorsCh)
 
 	var errors []string
