@@ -14,7 +14,7 @@ go 文で関数を実行すると起動する。
 
 ### channels
 
-チャネル( Channel )型は、チャネルオペレータの <- を用いて値の送受信ができる通り道です。
+チャネル( Channel )型は、チャネルオペレータの <- を用いて値の送受信ができる通り道です。\
 ref: <https://go-tour-jp.appspot.com/concurrency/2>
 
 ```txt
@@ -25,4 +25,14 @@ v := <-ch  // ch から受信した変数を v へ割り当てる
 <-ch
 ```
 
+#### 戻り値として返す場合
+
 戻り値として channel を返す場合は、`<-chan string` （読み取り専用の channel）という形式とする。
+
+```go
+func foo() <-chan string {
+  ch := make(chan string)
+  :
+  return ch
+}
+```
