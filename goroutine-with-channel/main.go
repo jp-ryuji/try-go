@@ -10,10 +10,8 @@ type Result struct {
 	Err    error
 }
 
-//
 // foo と bar という別々の処理（中身は似ているが）が同時に実行される。
 // それぞれ channel に結果を送信し、両方の受信を待って先に進む。
-//
 func main() {
 	// 開始時刻を記録
 	startTime := time.Now()
