@@ -1,10 +1,32 @@
 # try-go
 
+## 並行性と並列性
+
+並行性と並列性は関連しているが異なる概念です。
+
+### 並行性 (Concurrency)
+
+- **並行性**は一度に複数のことを処理することです。
+- 構造に関する概念で、複数のタスクを処理するためのプログラム設計方法です。
+- Goでは、ゴルーチンとチャネルによって並行性を実現します。
+- 並行性は必ずしも並列実行を意味するわけではありません。1つのCPUコアでタスク切り替えを行う場合もあります。
+
+### 並列性 (Parallelism)
+
+- **並列性**は複数のことを同時に実行することです。
+- 実行に関する概念で、複数のタスクを同時に実行することです。
+- 並列性には複数の処理ユニット（コア）が必要です。
+- すべての並列プログラムは並行性を持ちますが、すべての並行プログラムが並列であるとは限りません。
+
+### Goにおける並行性と並列性
+
+Goではゴルーチンによって並行性を実現し、複数のCPUコアが利用可能であれば並列に実行されます。Goランタイムのスケジューラがゴルーチンを管理し、利用可能なプロセッサコアに配分します。
+
 ## Concurrency
 
 [Share Memory By Communicating](https://go.dev/blog/codelab-share)
 
-- Go’s concurrency primitives - `goroutines` and `channels`
+- Go's concurrency primitives - `goroutines` and `channels`
   - Go encourages the use of channels to pass references to data between goroutines. This approach ensures that only one goroutine has access to the data at a given time.
 - Do not communicate by sharing memory; instead, share memory by communicating.
 
